@@ -1,9 +1,14 @@
-export interface Pet {
-  id : number
+export class Pet {
   name: string
   image: string
   kind : string
   profileText : string
-  popularity : number
 
+
+  constructor(name: string, image: string, kind: string, profileText: string) {
+    this.name = name;
+    this.image = image;
+    this.kind = kind;
+    this.profileText = profileText;
+  }
 }
