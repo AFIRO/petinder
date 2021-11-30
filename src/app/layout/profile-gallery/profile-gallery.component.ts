@@ -10,13 +10,11 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./profile-gallery.component.css']
 })
 export class ProfileGalleryComponent implements OnInit {
-  pets: Pet[]
+  pets: Pet[] = []
   selectedPet: Pet | undefined
-  searchText: string;
+  searchText: string = ''
 
   constructor(private petService: PetService, private formBuilder: FormBuilder) {
-    this.pets = []
-    this.searchText = ''
   }
 
   petForm = this.formBuilder.group({
