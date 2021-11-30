@@ -1,14 +1,18 @@
 export class Pet {
+  id: number
   name: string
+  kind: string
   image: string
-  kind : string
-  profileText : string
+  profileText: string
+  popularity: number
 
 
-  constructor(name: string, image: string, kind: string, profileText: string) {
+  constructor(id: number, name: string, kind: string, image: string, profileText: string, popularity: number) {
+    this.id = id;
     this.name = name;
-    this.image = image;
     this.kind = kind;
+    this.image = image;
     this.profileText = profileText;
+    this.popularity = popularity;
   }
 }

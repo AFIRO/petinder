@@ -20,14 +20,16 @@ export class ProfileGalleryComponent implements OnInit {
   }
 
   petForm = this.formBuilder.group({
+    id:'',
     name: '',
-    image: '',
     kind: '',
-    profileText: ''
+    image: '',
+    profileText: '',
+    popularity:''
   });
 
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getPets()
   }
 
@@ -39,11 +41,14 @@ export class ProfileGalleryComponent implements OnInit {
     this.selectedPet = pet
   }
 
-  onSubmit(): void {
-    let newPet = new Pet(this.petForm.get("name")?.value, this.petForm.get("image")?.value, this.petForm.get("kind")?.value, this.petForm.get("profileText")?.value)
+  onSubmit() {
+    this.petService.addPets(this.petForm.value).subscribe(response => {
+      this.getPets()
+      alert("Your pet " + this.petForm.get("name")?.value + " has been submitted");
+      this.petForm.reset();
 
-    alert("Your pet " + this.petForm.get("name")?.value + "has been submitted")
-    this.petForm.reset()
+
+    })
 
   }
 

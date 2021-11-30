@@ -14,8 +14,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    ProfileGalleryComponent,
-    NameFilterPipe,
 
   ],
   exports: [
@@ -24,8 +22,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule,
-    FormsModule
   ]
 })
 export class LayoutModule {
