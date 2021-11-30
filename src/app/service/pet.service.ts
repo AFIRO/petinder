@@ -24,7 +24,7 @@ export class PetService {
   }
 
 
-  getPets(): Observable<any> {
+  getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(this._url)
       .pipe(map((results) => results.sort(
         (a: Pet, b: Pet) => {

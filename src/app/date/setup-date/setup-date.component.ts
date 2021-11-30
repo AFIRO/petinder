@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Pet} from "../../model/pet";
 import {ActivatedRoute} from "@angular/router";
 import {PetService} from "../../service/pet.service";
+import {filter, first, mergeAll} from "rxjs";
 
 
 @Component({
@@ -13,10 +14,10 @@ export class SetupDateComponent implements OnInit {
   set petName(value: string) {
     this._petName = value;
   }
+
   sendTextForm: any;
   public pet: Pet | undefined
   private _petName: string = ''
-  private petList : Pet[] = []
 
 
 
@@ -26,15 +27,16 @@ export class SetupDateComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this._petName = this.route.snapshot.paramMap.get('name').toLowerCase()
-    this.pet = this.getPetFromBackEnd(this._petName)
+    this.getPetFromBackEnd(this._petName)
 
   }
 
 
-  getPetFromBackEnd(name: string): Pet {
-    this.petService.getPets().subscribe(pets => this.petList = pets)
-    console.log(this.petList)
-    this.petList = this.petList.filter((pet : Pet) => pet.name.toLowerCase().includes(name))
-    return this.petList[0]
+  getPetFromBackEnd(name: string): void {
+    this.petService.getPets()
+      .pipe(mergeAll())
+      .pipe(filter((pet: Pet) => pet.name.toLowerCase().includes(name)))
+      .pipe(first())
+      .subscribe(input => this.pet = input)
   }
 }
