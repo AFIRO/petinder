@@ -24,6 +24,7 @@ import {NameFilterPipe} from "./layout/pipes/name-filter.pipe";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
   providers: [],
   exports: [
